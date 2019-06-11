@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>FortTools</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar class="searchplayer" [(ngModel)] ="playerNameToSearch" (search)="searchPlayer()" placeholder="Nome do jogador" ></ion-searchbar>
+
+  <div *ngIf="loading">
+    Partidas: {{player.totals.matchesplayed}}<br>
+    Wins: {{player.totals.wins}}<br>
+    Kills: {{player.totals.kills}}<br>
+    WinRante: {{player.totals.winrate}}<br>
+    KD: {{player.totals.kd}}
+  </div>
+
+
+</ion-content>
