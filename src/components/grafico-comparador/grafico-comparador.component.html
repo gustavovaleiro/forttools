@@ -1,0 +1,13 @@
+<ion-card padding>
+ 
+  <div>
+        <div  class ="chartcontainer">
+          <canvas baseChart #baseChart="base-chart"
+            [datasets]="radarChartData"
+            [options]="radarChartOptions"
+            [labels]="radarChartLabels"
+            [chartType]="radarChartType">
+          </canvas>
+        </div>
+      </div>
+</ion-card>

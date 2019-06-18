@@ -12,13 +12,23 @@ export class PlayerService{
     constructor(public http: HttpClient){
     }
 
-    findPlayer(uuid: string) : Observable<PlayerStatusDTO> {
-        return this.http.get<PlayerStatusDTO>(`${API_CONFIG.baseUrl}/users/public/br_stats?user_id=${uuid}&platform=pc`)
+    findPlayer(uuid: String) : Observable<PlayerStatusDTO> {
+        return this.http.get<PlayerStatusDTO>(`${API_CONFIG.baseUrl}/users/public/br_stats?user_id=${uuid}&platform=pc`) .catch((error:any) => {
+            console.error(error)
+            return Observable.throw(new Error(error));
+        });
     }
 
-    findUuidByName(name: string) : Observable<PlayerAccountInfoDTO>{
-        if(name.length>=3)
-            return this.http.get<PlayerAccountInfoDTO>(`${API_CONFIG.baseUrl}/users/id?username=${name}`)
-    }
+    findUuidByName(name: String) : Observable<PlayerAccountInfoDTO>{
+        if(name.length>=3){
+
+          return this.http.get<PlayerAccountInfoDTO>(`${API_CONFIG.baseUrl}/users/id?username=${name}`)
+                    .catch((error:any) => {
+                        console.error(error)
+                        return Observable.throw(new Error(error));
+                    });
+        }
+        
+    }           
 
 }

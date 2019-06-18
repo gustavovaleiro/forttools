@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -11,19 +11,25 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlayerService } from '../services/domain/player.service';
 import {  AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { FindPlayersPage } from '../pages/find-players/find-players';
+import { ChartsModule } from 'ng2-charts';
+import { GraficoComparadorComponent } from '../components/grafico-comparador/grafico-comparador.component';
+import { SQLite } from '@ionic-native/sqlite'
+import { PlayerProvider } from '../providers/player/player';
+import { DatabaseProvider } from '../providers/database/database';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     TabsPage,
-    FindPlayersPage
-
+    FindPlayersPage,
+    GraficoComparadorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,10 +41,13 @@ import { FindPlayersPage } from '../pages/find-players/find-players';
   providers: [
     StatusBar,
     SplashScreen,
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite,
     AuthInterceptorProvider,
     PlayerService,
-    
+    PlayerProvider,
+    DatabaseProvider
   ]
 })
 export class AppModule {}

@@ -6,14 +6,10 @@
 
 <ion-content padding>
   <ion-searchbar class="searchplayer" [(ngModel)] ="playerNameToSearch" (search)="searchPlayer()" placeholder="Nome do jogador" ></ion-searchbar>
+  
+      <h4 *ngFor="let player of players">Nome:{{player.username}}</h4>
 
-  <div *ngIf="loading">
-    Partidas: {{player.totals.matchesplayed}}<br>
-    Wins: {{player.totals.wins}}<br>
-    Kills: {{player.totals.kills}}<br>
-    WinRante: {{player.totals.winrate}}<br>
-    KD: {{player.totals.kd}}
-  </div>
-
-
+    <!--ion-fab  >
+      <button ion-fab (click) = "initComparing()"color="primary">Compare</button>
+    </ion-fab-->
 </ion-content>
