@@ -16,6 +16,7 @@ import { GraficoComparadorComponent } from '../components/grafico-comparador/gra
 import { SQLite } from '@ionic-native/sqlite'
 import { PlayerProvider } from '../providers/player/player';
 import { DatabaseProvider } from '../providers/database/database';
+import { PlayerItemListComponent } from '../components/player-item-list/player-item-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { DatabaseProvider } from '../providers/database/database';
     HomePage,
     TabsPage,
     FindPlayersPage,
-    GraficoComparadorComponent
+    GraficoComparadorComponent,
+    PlayerItemListComponent
+  
   ],
   imports: [
     BrowserModule,
