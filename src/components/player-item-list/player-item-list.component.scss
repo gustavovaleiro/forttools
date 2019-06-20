@@ -1,3 +1,29 @@
-.compare, .plataform, .favorite{
-    padding-left: 5px;
+
+
+.grid, .item, .label, .item-inner, .linha{
+    padding: 0px !important;
+    margin: 0px !important;
 }
+
+
+.coluna-nome, .coluna-plataforma, .coluna-compare, .coluna-favorito{
+    padding: 0px;
+    margin: 0px ;
+    
+}
+.coluna-plataforma, .coluna-compare, .coluna-favorito{
+    padding: 0px;
+    margin: 0px ;
+    
+}
+.item-plataforma{
+  
+}
+.compare{
+    width: fit-content;
+}
+.item-toggle {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
