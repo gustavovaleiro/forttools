@@ -12,8 +12,8 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 export class DatabaseProvider {
   public readonly DATABASE_NAME = 'fortools.db';
   public readonly PLAYERACCOUNTINFO_TABLE = 'player';
-  public  readonly PLAYERACCOUNTINFO_NAME_COLUMN = 'nome';
-  public  readonly PLAYERACCOUNTINFO_FAVORITO_COLUMN = 'favorito';
+  public  readonly PLAYERACCOUNTINFO_NAME_COLUMN = 'username';
+  public  readonly PLAYERACCOUNTINFO_FAVORITO_COLUMN = 'favorite';
   public  readonly PLAYERACCOUNTINFO_UUID_COLUMN = 'uuid';
 
   constructor(private sqlite: SQLite) {

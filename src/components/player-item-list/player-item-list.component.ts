@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PlayerList } from '../../providers/player/player';
+import { PlayerList, PlayerProvider } from '../../providers/player/player';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { PlayerList } from '../../providers/player/player';
 })
 export class PlayerItemListComponent {
   @Input() public player: PlayerList = new PlayerList(" ", " ", false, false);
-  constructor() { 
+  constructor(public playerDB: PlayerProvider) { 
   }
 
   ngOnInit() {
@@ -16,6 +16,7 @@ export class PlayerItemListComponent {
   }
  public toggleFavorito(){
     this.player.favorite = ! this.player.favorite;
+    this.playerDB.setFavorite(this.player.uuid, this.player.favorite);
   }
   public toggleCompare(){
     this.player.compare  = !this.player.compare;

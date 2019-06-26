@@ -17,6 +17,7 @@ import { SQLite } from '@ionic-native/sqlite'
 import { PlayerProvider } from '../providers/player/player';
 import { DatabaseProvider } from '../providers/database/database';
 import { PlayerItemListComponent } from '../components/player-item-list/player-item-list.component';
+import { ComparaJogadoresPage } from '../pages/compara-jogadores/compara-jogadores';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PlayerItemListComponent } from '../components/player-item-list/player-i
     TabsPage,
     FindPlayersPage,
     GraficoComparadorComponent,
-    PlayerItemListComponent
+    PlayerItemListComponent,
+    ComparaJogadoresPage
   
   ],
   imports: [
@@ -39,7 +41,8 @@ import { PlayerItemListComponent } from '../components/player-item-list/player-i
     MyApp,
     HomePage,
     TabsPage,
-    FindPlayersPage
+    FindPlayersPage,
+    ComparaJogadoresPage
   ],
   providers: [
     StatusBar,

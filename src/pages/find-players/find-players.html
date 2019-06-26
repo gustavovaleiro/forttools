@@ -1,19 +1,36 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>FortTools</ion-title>
+    <ion-title center>Buscar Jogador</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
   <ion-searchbar class="searchplayer" [(ngModel)] ="playerNameToSearch" (search)="searchPlayer()" placeholder="Nome do jogador" ></ion-searchbar>
-  
-      <div *ngFor="let player of players">
-        <player-item-list [player]=player></player-item-list>
-      </div>
-
-
-
-    <!--ion-fab  >
-      <button ion-fab (click) = "initComparing()"color="primary">Compare</button>
-    </ion-fab-->
+  <ion-card>
+      <ion-item  >
+          <ion-label style="font-size: 1.4rem; padding-left: 8px !important;"><strong>Favoritos</strong></ion-label>
+          <ion-toggle (ionChange)="filtraFavorito()"></ion-toggle>
+        </ion-item>
+  </ion-card>  
+  <ion-card *ngIf=" players && players.length > 0">
+    <ion-card-header class = "ion-card-header"  >
+      <p ion-item style="text-align: center; font-size: 1.8rem;"> <strong>Jogadores</strong></p>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-list >
+            <player-item-list *ngFor="let player of players" [player]=player></player-item-list>
+          </ion-list>
+    </ion-card-content>
+          
+     
+    </ion-card>
+   <ion-fab bottom right style="margin-right: 15px;margin-bottom:25px;">
+        <button ion-fab (click) = "compare()"><img src='assets/icon/fight-full-icon-16.png' style="zoom: 1.5"/></button>
+      </ion-fab>
+   
 </ion-content>
+
+<!--ion-fab class ="fab" >
+    <button ion-fab color="primary">
+    </button>
+  </ion-fab-->  

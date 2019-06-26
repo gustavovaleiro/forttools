@@ -15,7 +15,7 @@ export class PlayerService{
     findPlayer(uuid: String) : Observable<PlayerStatusDTO> {
         return this.http.get<PlayerStatusDTO>(`${API_CONFIG.baseUrl}/users/public/br_stats?user_id=${uuid}&platform=pc`) .catch((error:any) => {
             console.error(error)
-            return Observable.throw(new Error(error));
+            return Observable.throw(JSON.stringify(error)  )
         });
     }
 
@@ -24,7 +24,7 @@ export class PlayerService{
 
           return this.http.get<PlayerAccountInfoDTO>(`${API_CONFIG.baseUrl}/users/id?username=${name}`)
                     .catch((error:any) => {
-                        console.error(error)
+                        console.error(JSON.stringify(error)  )
                         return Observable.throw(new Error(error));
                     });
         }

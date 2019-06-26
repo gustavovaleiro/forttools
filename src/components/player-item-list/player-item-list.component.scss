@@ -1,11 +1,14 @@
 
-
-.grid, .item, .label, .item-inner, .linha{
-    padding: 0px !important;
-    margin: 0px !important;
+.label{
+    margin: 0;
+    height: fit-content;
 }
-
-
+.grid, .item-inner, .item{
+    padding: 0px !important;
+}
+.item-inner, .item, .input-wrapper{
+    height: auto !important;;
+}
 .coluna-nome, .coluna-plataforma, .coluna-compare, .coluna-favorito{
     padding: 0px;
     margin: 0px ;
@@ -16,14 +19,11 @@
     margin: 0px ;
     
 }
-.item-plataforma{
-  
-}
 .compare{
     width: fit-content;
 }
-.item-toggle {
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+.item-toggle{
+    zoom: 1.2;
 }
+
 

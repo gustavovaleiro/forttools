@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DatabaseProvider } from '../providers/database/database';
 import { HomePage } from '../pages/home/home';
+import { FindPlayersPage } from '../pages/find-players/find-players';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,6 +30,6 @@ export class MyApp {
 
   private openHomePage(splashScreen: SplashScreen){
     splashScreen.hide();
-    this.rootPage = TabsPage;
+    this.rootPage = FindPlayersPage;
   }
 }

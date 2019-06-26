@@ -1,38 +1,23 @@
-<ion-item line="full" class ="no-padding">
-    <ion-grid class ="no-padding">
-        <ion-row class="linha">
-            <ion-col col-1></ion-col>
-            <ion-col align-self-center col-2 class="coluna-plataforma">
-                <ion-item  no-lines class="item-plataforma">
-                    PC
-                </ion-item>    
-            </ion-col>
-            <ion-col col-6 class="coluna-nome">
-                    <ion-item no-lines class="item-nome">
-                        {{player.username}}
-                   </ion-item> 
-            </ion-col>  
-            <ion-col align-self-center col-1  class="coluna-compare">
-                <div class = "compare">
-                    <ion-item no-lines *ngIf="player.compare" (click)= "toggleCompare()" text-wrap class="item-toggle item-compare-true">
-                        CC
-                    </ion-item>
-                    <ion-item  no-lines *ngIf="!player.compare"(click)= "toggleCompare()"  text-wrap class="item-toggle item-compare-false">
-                        cc
-                    </ion-item> 
-                </div>
-            </ion-col>
-            <ion-col align-self-center col-1 class=" coluna-favorito">
-                <div class = "favorito">
-                    <ion-item no-lines *ngIf="player.favorite" (click)= "toggleFavorito()" class="item-toggle item-favorito-true">
-                        FF        
-                    </ion-item>
-                    <ion-item no-lines *ngIf="!player.favorite" (click)= "toggleFavorito()" class="item-toggle item-favorito-false">
-                        ff  
-                    </ion-item>    
-                </div>
-            </ion-col>
-            <ion-col col-1></ion-col>            
-        </ion-row>
-    </ion-grid>
+<ion-item>
+    <ion-grid >
+            <ion-row class="linha">
+                <ion-col col-1></ion-col>
+                <ion-col align-self-center col-2 class="coluna-plataforma">
+                        PC
+                </ion-col>
+                <ion-col align-self-center col-6 class="coluna-nome">
+                            {{player.username}}
+                </ion-col>  
+                <ion-col align-self-center col-1  class="coluna-compare">
+                    <img src='assets/icon/fight-full-icon-16.png' *ngIf="player.compare" (click)= "toggleCompare()"  class="item-toggle compare item-compare-true"/>
+                    <img src='assets/icon/fight-outline-icon-16.png' *ngIf="!player.compare"(click)= "toggleCompare()"   class="item-toggle compare item-compare-false"/>
+                </ion-col>
+                <ion-col align-self-center col-1 class=" coluna-favorito">
+                    <ion-icon name="star" *ngIf="player.favorite" (click)= "toggleFavorito()" class="item-toggle  favorito item-favorito-true"> </ion-icon>
+                    <ion-icon ios="ios-star-outline" md="ios-star-outline" *ngIf="!player.favorite" (click)= "toggleFavorito()" class="item-toggle favorito item-favorito-false"></ion-icon>   
+                </ion-col>
+                <ion-col col-1></ion-col>            
+            </ion-row>
+        </ion-grid>
 </ion-item>
+ 

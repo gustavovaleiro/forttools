@@ -1,0 +1,59 @@
+<ion-content>
+    <grafico-comparador *ngIf = "terminouCarregamento" [radarChartLabels]= radarChartLabels [radarChartData]= radarChartData></grafico-comparador>
+    <ion-card>
+            <ion-grid >
+                    <ion-row class="linha">
+                        <ion-col col-3></ion-col>
+                        <ion-col align-self-center col-2 class="coluna-plataforma" *ngFor="let player of players;">
+                            
+                           <h4 style = "padding-right: 3px; " > {{player.username.substr(0, 6)}}. </h4>
+                        </ion-col>
+                                
+                    </ion-row>
+                    <ion-row class="linha" >
+                            <ion-col col-3>
+                                    <h4 style = "padding-left: 3px;" > Partidas </h4>
+                            </ion-col>
+                            <ion-col align-self-center col-2 class="coluna-plataforma" *ngFor="let player of players;">
+                            
+                                    <h4 style = "padding-right: 3px; " > {{player.totals.matchesplayed}} </h4>
+                            </ion-col>
+                    </ion-row>
+                    <ion-row class="linha" >
+                            <ion-col col-3>
+                                    <h4 style = "padding-left: 3px;" > Vitorias </h4>
+                            </ion-col>
+                            <ion-col align-self-center  col-2 class="coluna-plataforma" *ngFor="let player of players;">
+                            
+                                    <h4 style = "padding-right: 3px; " > {{player.totals.wins}} </h4>
+                            </ion-col>
+                    </ion-row>
+                    <ion-row class="linha" >
+                            <ion-col col-3>
+                                    <h4 style = "padding-left: 3px;" > Matanças </h4>
+                            </ion-col>
+                            <ion-col align-self-center  col-2 class="coluna-plataforma" *ngFor="let player of players;">
+                            
+                                    <h4 style = "padding-right: 3px; " > {{player.totals.kills}} </h4>
+                            </ion-col>
+                    </ion-row>
+                    <ion-row class="linha" >
+                            <ion-col col-3>
+                                    <h4 style = "padding-left: 3px;" > Tx Vitoria </h4>
+                            </ion-col>
+                            <ion-col align-self-center col-2  class="coluna-plataforma" *ngFor="let player of players;">
+                            
+                                    <h4 style = "padding-right: 3px; " > {{player.totals.winrate}}% </h4>
+                            </ion-col>
+                    </ion-row>
+                    <ion-row class="linha" >
+                            <ion-col col-3>
+                                    <h4 style = "padding-left: 3px;" > K/D </h4>
+                            </ion-col>
+                            <ion-col align-self-center  col-2 class="coluna-plataforma" *ngFor="let player of players;">
+                                    <h4 style = "padding-right: 3px; " > {{player.totals.kd}} </h4>
+                            </ion-col>
+                    </ion-row>
+                </ion-grid>
+    </ion-card>
+</ion-content>

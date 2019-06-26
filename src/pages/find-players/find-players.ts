@@ -1,12 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { PlayerService } from '../../services/domain/player.service';
-import { PlayerStatusDTO } from '../../models/playerstats.dto';
-import { RadialChartOptions, ChartDataSets, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
-import { Observable } from 'rxjs';
 import { PlayerList, PlayerProvider } from '../../providers/player/player';
 import { PlayerAccountInfoDTO } from '../../models/data.dto';
+import { t, r } from '@angular/core/src/render3';
+import { HomePage } from '../home/home';
+import { ComparaJogadoresPage } from '../compara-jogadores/compara-jogadores';
 
 @IonicPage()
 @Component({
@@ -17,33 +16,71 @@ export class FindPlayersPage {
  
   playerNameToSearch: string;
   loaded = false;
-
+  onlyFavorite=false;
+  private allPlayers: PlayerList[] = [];
   public players: PlayerList[] = [];
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public playerService: PlayerService, 
-     private playerBd: PlayerProvider) {
+     private playerBd: PlayerProvider,
+    ) {
+      this.getAllPlayers();
   }
 
-  ionViewDidLoad() {
+  public  ionViewDidLoad() {
     console.log('ionViewDidLoad FindPlayersPage');
   }
 
-  searchPlayer(){
-    if(this.players.filter( p => p.username === this.playerNameToSearch).length == 0  ){
-        console.log("Não existe player com o nome " + this.playerNameToSearch )
+  public searchPlayer(){
+    if(this.allPlayers && this.allPlayers.filter( p => p.username === this.playerNameToSearch).length > 0  ){
+      console.log("Existe player com o nome " + this.playerNameToSearch )
+
+    }else{
+      console.log("Não existe player com o nome " + this.playerNameToSearch )
         
         this.playerService.findUuidByName(this.playerNameToSearch).subscribe( player =>{
           this.insert(player);
         }, error => console.error(error));
-    }else{
-      console.log("Existe player com o nome " + this.playerNameToSearch )
     }
      
   }
 
-  public calculaDataSetPlayer
+  public compare(){
+    let uuidsToCompare: string[] = [];
+    console.log("Começando a pegar string de uuids dos jogadores marcados para comparar");
+    uuidsToCompare.push(...this.allPlayers.filter( p => p.compare).map( p => p.uuid));
+    console.log("Terminei de pegar string de uuids dos jogadores marcados para comparar");
+    if(uuidsToCompare.length == 0)
+        return;
+    else if (uuidsToCompare.length <= 4){
+      this.navCtrl.push(ComparaJogadoresPage, {uuids: uuidsToCompare});
+    }
+  }
+  public filtraFavorito(){
+      this.onlyFavorite = !this.onlyFavorite;
+      if(this.onlyFavorite){
+        this.allPlayers.length=0;
+        this.allPlayers.push(...this.players);
+        this.players.length =0;
+        this.players.push(...this.allPlayers.filter(p => p.favorite));
+      }else{
+        this.players.length =0;
+        this.players.push(...this.allPlayers);
+      }
+    
+  }
+
+  private getAllPlayers() {
+    this.playerBd.getAll(this.onlyFavorite).then((result: any[]) => {
+      this.allPlayers.length = 0;
+      this.players.length=0;
+      this.allPlayers.push(...result);
+      this.players.push(...this.allPlayers);
+      console.log(JSON.stringify(this.allPlayers));
+    });
+  }
+
   initComparing(){
     this.loaded=true;
     console.log(this.loaded);
@@ -51,28 +88,7 @@ export class FindPlayersPage {
 
   public insert (player: PlayerAccountInfoDTO){
     this.playerBd.insert(player);
-    this.players.push(PlayerList.from(player, false,false));
+    this.allPlayers.push( PlayerList.from(player, false,false) );
   }
-  /*this.player = responsePlayer;
-  this.players.push(this.player);
-  this.nomes.push(responsePlayer.username);
-
-
-  let maxMatch = Math.max(...this.players.map(p => p.totals.matchesplayed));
-  let maxWins = Math.max(...this.players.map(p => p.totals.wins));
-  let maxKills = Math.max(...this.players.map(p => p.totals.kills));
-  let maxWinRate = Math.max(...this.players.map(p => p.totals.winrate));
-  let maxKd = Math.max(...this.players.map(p => p.totals.kd));
-
-  this.radarChartData.length =0;
-  this.players.forEach(p => {
-    this.radarChartData.push({data: [p.totals.matchesplayed*100/maxMatch, p.totals.wins*100/maxWins, p.totals.kills*100/maxKills,
-                             p.totals.winrate*100/maxWinRate, p.totals.kd*100/maxKd], label: p.username });
-  });
   
-   if(this.chart !== undefined){
-    console.log("Entrou no if pra destruir o chart")
-    this.chart.ngOnDestroy();
-    this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);  
-  }*/
 }
